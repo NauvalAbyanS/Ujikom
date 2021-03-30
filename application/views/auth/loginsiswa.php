@@ -13,7 +13,7 @@
     <input type="text"  class="inp" placeholder="username" >  
   <p> Password </p>
     <input type="password"  class="inp" placeholder="password"> 
-  <p> <center><a href="/admin/mainpageAdmin.php"> <input type="submit" value="login" href="/views/admin/mainpageadmin.php"> </center></a> </p>
+  <p> <center><button type="submit" value="login" href="/views/admin/mainpageadmin.php"> </center></button> </p>
   </div>
   </div>  
 
