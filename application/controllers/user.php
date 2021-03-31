@@ -7,14 +7,14 @@ class user extends CI_Controller {
         $this->load->library('form_validation');
     }
 
-    public function indexpetugas(){
-        $data['petugas'] = $this->db->get_where('petugas',['email' => $this->session->userdata('email')])->row_array();
-        echo 'selamat datang '. $data['petugas']['nama_petugas']  . '!!';
-
+    public function indexadmin(){
+        $this->load->view('petugas/admin/mainpageadmin');
     }
-
+    public function indexpetugas(){
+        $this->load->view('petugas/mainpagepetugas');
+    }
     public function indexsiswa(){
-        $data['siswa'] = $this->db->get_where('siswa',['nisn' => $this->session->userdata('nisn')])->row_array();
+        $data['siswa'] = $this->db->get_where('siswa',['email' => $this->session->userdata('email')])->row_array();
         echo 'selamat datang '. $data['siswa']['nama_siswa']  . '!!';
 
     }

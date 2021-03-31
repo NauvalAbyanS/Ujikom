@@ -19,36 +19,47 @@ class main extends CI_Controller {
 		$password = $this->input->post('password');
 
 		$petugas = $this->db->get_where('petugas',['email'=> $email])->row_array();
-	
-		if($petugas){
-			if($petugas['id_role'] == 1){
-				if(password_verify($password, $petugas['password'])){
-					echo $password;
-				}else{
-						echo "pass salah";
-					}}}}
-					
-					
-					
-					// $data = [
-					// 	'email' => $petugas['email'],
-					// 	'id_role' => $petugas['id_role']
-					// ];
-	// 				$this->session->set_userdata($data);
-	// 				redirect('menu');
-	// 			}else{
-	// 				$this->session->set_flashdata('message','<div class="alert alert-danger" 
-	// 				role="alert">Wrong Password!');
-	// 				redirect('passwordsalah');
-	// 			}
-	// 		}else{
-	// 			$this->session->set_flashdata('message','<div class="alert alert-danger" 
-	// 			role="alert">this email has not been activated!');
-	// 			redirect('auth');
 		
-	// 		}
-	// 	}
-	// }
+		if($petugas){
+			if($petugas['level'] == 1){
+				if(password_verify($password, $petugas['password'])){
+					$data = [
+						'email' => $petugas['email'],
+						'level' => $petugas['level']
+					];
+					$this->session->set_userdata($data);
+					redirect('user/indexadmin');
+					}else{
+						echo"akun tidak ditemukan";
+					}
+				}elseif($petugas['level'] == 2){
+							if(password_verify($password, $petugas['password'])){
+							$data = [
+								'email' => $petugas['email'],
+								'level' => $petugas['level']
+							];
+						$this->session->set_userdata($data);
+					redirect('user/indexpetugas');
+				}
+			}
+		}
+	}
+		public function link(){
+			$button = $_POST['button'];
+    	if ($button == 'transaksi'){
+       		$this->load->view('petugas/transaksi');
+    	}elseif ($button == 'history'){
+			$this->load->view('petugas/history');
+	 	}elseif ($button == 'editdata'){
+			$this->load->view('petugas/admin/editdata');
+	 	}elseif ($button == 'laporan'){
+			$this->load->view('petugas/admin/laporan');
+	 	}else{
+			echo "button tidak ditemukan";
+		}
+	}	
+
+
 	function logout(){
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('id_role');

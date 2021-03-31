@@ -11,8 +11,8 @@
     <title>Transaksi pembayaran</title>
 </head>
 <body>
-    <p><?php include 'application/views/include/navbar.php'; ?>
-</p>
+    <p><?php include 'application/views/include/navbar.php'; ?></p>
+    <center><h1>Pembayaran SPP Siswa</h1></center>
  <form class="container transaksi">
   <div class="row">
     <div class="col">
