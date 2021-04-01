@@ -29,11 +29,9 @@ class main extends CI_Controller {
 					];
 					$this->session->set_userdata($data);
 					redirect('user/indexadmin');
-					}else{
-						echo"akun tidak ditemukan";
 					}
-				}elseif($petugas['level'] == 2){
-							if(password_verify($password, $petugas['password'])){
+				}if($petugas['level'] == 2){
+						if(password_verify($password, $petugas['password'])){
 							$data = [
 								'email' => $petugas['email'],
 								'level' => $petugas['level']
@@ -42,6 +40,10 @@ class main extends CI_Controller {
 					redirect('user/indexpetugas');
 				}
 			}
+		}else{
+			echo "data tidak ditemukan";
+		}else{
+			echo "data dtidak ditemukan";
 		}
 	}
 		public function link(){
@@ -55,6 +57,20 @@ class main extends CI_Controller {
 	 	}elseif ($button == 'laporan'){
 			$this->load->view('petugas/admin/laporan');
 	 	}else{
+			echo "button tidak ditemukan";
+		}
+	}	
+		public function linkCRUD(){
+			$button = $_POST['button'];
+		if ($button == 'siswa'){
+			$this->load->view('petugas/transaksi');
+		}elseif ($button == 'history'){
+			$this->load->view('petugas');
+		}elseif ($button == 'kelas'){
+			$this->load->view('petugas/admin/editdata');
+		}elseif ($button == 'spp'){
+			$this->load->view('petugas/admin/laporan');
+		}else{
 			echo "button tidak ditemukan";
 		}
 	}	

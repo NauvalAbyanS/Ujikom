@@ -18,12 +18,11 @@
         echo 'selamat datang '. $data['petugas']['nama_petugas']  . ' Anda adalah admin!!';?></h1>
       <h3> Apa yang ingin anda lakukan </h3>
     </div>
-<form action="<?=base_url('main/link'); ?>" method="post">
+<form action="<?=base_url('main/linkCRUD'); ?>" method="post">
     <button type="submit" class="button1" value="transaksi" name="button"> Transaksi pembayaran</button>
     <button type="submit" class="button2" value="history" name="button"> History pembayaran</button>
     <button type="submit" class="button3" value="editdata" name="button"> Edit Data</button>
     <button type="submit" class="button4" value="laporan" name="button"> Laporan</button>
-</div>
 </form>
 </body>
 </html>
