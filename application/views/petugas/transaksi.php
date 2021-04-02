@@ -11,48 +11,60 @@
     <title>Transaksi pembayaran</title>
 </head>
 <body>
-    <p><?php include 'application/views/include/navbar.php'; ?></p>
-    <center><h1>Pembayaran SPP Siswa</h1></center>
- <form class="container transaksi">
+    <p><?php include 'application/views/include/navbar.php'; ?><p>
+<center><h4>Pembayaran SPP Siswa</h1></center><br><br>
+ <form class="container border" action="<?php base_url('main/tambah'); ?>" method="post">
+    <div class="row">
+        <div class="col">
+                    <input type="hidden" class="form-control" name="id_petugas" value="<?php $data['petugas'] = $this->db->get_where('petugas',['id_petugas' => $this->session->userdata('id_petugas')])->row_array();
+                                                                                echo "" .$data['petugas']['id_petugas'];?>" >
+                    <input type="hidden" class="form-control" name="id_pembayaran" value="">
+            </div>
+        </div>
+        <br><br> 
   <div class="row">
     <div class="col">
-        <label> NISN Siswa
-            <input type="text" class="form-control" placeholder="NISN">
-        </label>
+        <label> NISN Siswa </label><br>
+        <select name="nisn" >
+        <option value="000123">000123</option>
+        <option value="000456">000456</option>
+    </select><br>
+    </div><div class="col-10">
+        <label> id_spp </label><br>
+        <select name="idspp">
+            <option value="11">11</option>
+            <option value="12">12</option>
+    </select><br>
     </div>
-        <div class="col-10">
-            <label> Kelas
-                <input type="text" class="form-control" placeholder="Kelas">
-            </label>
-        </div>
         </div>
             <div class="row">
                 <div class="col">
             <label> Tanggal
-        <input type="text" class="form-control" placeholder="tanggal">
+        <input type="text" class="form-control" placeholder="tanggal" name="tanggal">
     </label>
         </div>
             <div class="col">
                 <label> Bulan
-                    <input type="text" class="form-control" placeholder="bulan">
+                    <input type="text" class="form-control" placeholder="bulan" name="bulan" >
                 </label>
             </div>
         <div class="col-8">
     <label> Tahun
-        <input type="text" class="form-control" placeholder="tahun">
+        <input type="text" class="form-control" placeholder="tahun" name="tahun">
             </label>
         </div>
     </div>
     <div class="row">
                 <div class="col-sm-4">
             <p> Jumlah Bayar
-        <input type="text" class="form-control " placeholder="Jumlah bayar">
+        <input type="text" class="form-control " placeholder="Jumlah bayar" name="jumbay">
     </p>
 </div>
 
 </div>
 <button type="button" class="btn btn-secondary">Submit</button>
-</form>
+
 </div>
+</form>
 </body>
 </html>

@@ -16,8 +16,10 @@ class user extends CI_Controller {
     public function indexsiswa(){
         $data['siswa'] = $this->db->get_where('siswa',['email' => $this->session->userdata('email')])->row_array();
         echo 'selamat datang '. $data['siswa']['nama_siswa']  . '!!';
-
     }
+    function input($data,$pembayaran){
+		$this->db->insert($pembayaran,$data);
+	}
 
 
 }
