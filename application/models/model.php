@@ -14,4 +14,5 @@ class model extends CI_Model{
     function input($data,$pembayaran){
 		$this->db->insert($pembayaran,$data);
 	}
+    
 }

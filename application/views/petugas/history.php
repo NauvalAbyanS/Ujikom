@@ -18,7 +18,7 @@
     <center><h1>History Pembayaran (Admin & Petugas)</h1></center>
     <form action="<?php echo base_url(). 'user/create'; ?>" method="post">
     <table class="table table-bordered container" >
-  <thead>
+  <thead class ="table table-dark">
     <tr>
       <th scope="col" name="idpembayaran">id pembayaran</th>
       <th scope="col" name="idpetugas">id petugas</th>
@@ -28,19 +28,35 @@
       <th scope="col" name="tahunbayar">tahun bayar</th>
       <th scope="col" name="idspp">id_spp</th>
       <th scope="col" name="jumlahbayar">jumlah bayar</th>
+      <th scope="col" >option</th>
     </tr>
   </thead>
-  <tbody>
-  <tr>
-      <th scope="row">coba</th>
-      <td>coba</td>
-      <td>coba</td>
-      <td>coba</td>
-      <td>masih mencoba</td>
-      <td>masih mencoba</td>
-      <td>masih mencoba</td>
-      <td>masih mencoba</td>
-    </tr>
+  <?php
+        $db = mysqli_connect('localhost', 'root', '', 'db_spp');
+        $sql = "SELECT * FROM pembayaran";
+        $query = mysqli_query($db,$sql);
+
+        while($bayar = mysqli_fetch_array($query)){
+            echo "<tr>";
+
+            echo "<td>".$bayar['id_pembayaran']."</td>";
+            echo "<td>".$bayar['id_petugas']."</td>";
+            echo "<td>".$bayar['nisn']."</td>";
+            echo "<td>".$bayar['tanggal_bayar']."</td>";
+            echo "<td>".$bayar['bulan_bayar']."</td>";
+            echo "<td>".$bayar['tahun_bayar']."</td>";
+            echo "<td>".$bayar['id_spp']."</td>";
+            echo "<td>".$bayar['jumlah_bayar']."</td>";
+
+            echo "<td>";
+            echo "<a href='form-edit.php?id=".$bayar['nisn']."'>Edit</a> | ";
+            echo "<a href='hapus.php?id=".$bayar['nisn']."'>Hapus</a>";
+            echo "</td>";
+
+            echo "</tr>";
+        }
+        ?>
+
     </tbody>
 </form>
 </table>
