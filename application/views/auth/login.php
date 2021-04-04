@@ -7,8 +7,7 @@
 </head>
 <body>
 
-<form class="user" method="POST" action="<?=base_url('main/auth'); ?>">
-<div class="form">
+<form class="user form" method="POST" action="<?=base_url('main/auth'); ?>">
   <center> <h2> LOGIN PETUGAS</h2></center>
   <?php echo $this->session->flashdata('msg');?>
     <div class="left">
@@ -20,7 +19,6 @@
   <p> <center><button type="submit">Login</center></button></p>
     <p><a href="views/auth/loginsiswa.php">Login Siswa!!! </a></p>
       </div>
-    </div>  
 
 </body>
 </html>

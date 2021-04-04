@@ -13,7 +13,7 @@
 <body>
     <p><?php include 'application/views/include/navbar.php'; ?><p>
 <center><h4>Pembayaran SPP Siswa</h1></center><br><br>
- <form class="container border" action="<?php base_url('main/tambah'); ?>" method="post">
+ <form class="container border" action="<?=base_url('main/tambah'); ?>" method="post">
     <div class="row">
         <div class="col">
                     <input type="hidden" class="form-control" name="id_petugas" value="<?php $data['petugas'] = $this->db->get_where('petugas',['id_petugas' => $this->session->userdata('id_petugas')])->row_array();
@@ -62,7 +62,7 @@
 </div>
 
 </div>
-<button type="button" class="btn btn-secondary">Submit</button>
+<button type="submit" class="btn btn-secondary">Submit</button>
 
 </div>
 </form>

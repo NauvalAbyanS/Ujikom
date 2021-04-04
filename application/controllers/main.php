@@ -82,7 +82,7 @@ class main extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		$bulan = $this->input->post('bulan');
 		$tahun = $this->input->post('tahun');
-		$jumlahbayar = $this->input->post('jumlahbayar');
+		$jumlahbayar = $this->input->post('jumbay');
 
 		$siswa = $this->db->get_where('siswa',['nisn'=> $nisn])->row_array();
 		$data = array(
@@ -95,8 +95,8 @@ class main extends CI_Controller {
 			'id_spp' => $idspp,
 			'jumlah_bayar' => $jumlahbayar
 			);
-		$this->m_data->input_data($data,'pembayaran');
-		redirect('user/input');
+		$this->model->input($data,'pembayaran');
+		redirect('user/tampil');
 	}
 
 	function logout(){

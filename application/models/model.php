@@ -11,5 +11,7 @@ class model extends CI_Model{
         $query=$this->db->query("SELECT * FROM siswa WHERE nisn='$username' AND sandi=MD5('$password') LIMIT 1");
         return $query;
     }
- 
+    function input($data,$pembayaran){
+		$this->db->insert($pembayaran,$data);
+	}
 }
