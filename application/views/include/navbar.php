@@ -6,9 +6,8 @@
 </head>
 <body>
 <nav action>
-    <li><a href="<?php echo base_url().'index.php/login/logout'?>">Log out</a></li>
-    <li>
-    <a href="#"> Home </a></li>
+    <li><a href="<?php echo base_url().'main/logout'?>">Log out</a></li>
+    <li><a href="<?php echo base_url().'main/homepetugas'?>"> Home </a></li>
 </nav>
 </body>
 </html>

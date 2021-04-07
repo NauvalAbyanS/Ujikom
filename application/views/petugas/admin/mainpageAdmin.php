@@ -9,9 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Halaman utama admin</title>
-
-</head>
-<body>
+  </head>
+  <body>
   <?php include 'application/views/include/navbar.php'; ?>
     <div class="centext"> 
       <h1><?php $data['petugas'] = $this->db->get_where('petugas',['email' => $this->session->userdata('email')])->row_array();

@@ -1,0 +1,64 @@
+
+button{
+    background: none;
+    color:rgb(5, 5, 5);
+    width: 400px;
+    height:350px;
+    font-size: 20px;
+    border-radius: 7px;
+    transition: .6s;
+    }
+    button:focus{
+      outline: none;
+    }
+    button:before{
+      content: '';
+      display: block;
+      width: 300px;
+      opacity: .5s;
+    }
+    button:after{
+      content: '';
+      display: block;
+      width: 150px;
+      left: 10px;
+      top: 0;
+      opacity: 0;
+      filter: blur(30px);
+    }
+    button:hover{
+      background: #339033;
+      cursor: pointer;
+    }
+    button:hover:before{
+      opacity: .6;
+      transition: .7s;
+    }
+    button:hover:after{
+      opacity: .6;
+      transition: .7s;
+    }
+    .button1{
+      margin-top: 50px;
+      margin-left:120px;
+      margin-bottom: 10px;
+    }
+    .button2{
+      margin-top: 50px;
+      margin-left:300px;
+    }
+    .button3{
+      margin-top: 200px;
+      margin-left:120px;
+    }
+    .button4{
+      margin-top: 200px;
+      margin-left:300px;
+    }
+    .centext{
+      text-align: center;
+    }
+    .buttonsis{
+      margin: 200px 200px 300px 730px;
+    }
+    

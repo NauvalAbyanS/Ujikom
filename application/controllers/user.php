@@ -18,6 +18,7 @@ class user extends CI_Controller {
         echo 'selamat datang '. $data['siswa']['nama_siswa']  . '!!';
     }
     function tampil(){
+
 		$this->load->view('petugas/history');
 	}
 

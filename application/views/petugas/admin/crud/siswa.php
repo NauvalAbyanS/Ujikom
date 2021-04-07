@@ -15,39 +15,42 @@
 </head>
 <body>
 <?php include 'application/views/include/navbar.php'; ?>
-    <center><h1>History Pembayaran (Admin & Petugas)</h1></center>
-    <form action="<?php echo base_url().'main/transaksi'; ?>">
-    <button type="button" class="btn btn-success"style="float:right; margin-right:280px;">
-      <a href="<?php echo site_url('Main/transaksi/') ?>" style="text-decoration:none; color:black;">Pembayaran</a>
-    </button>
-    <br><p>
-    <table class="table table-bordered container" >
+    <center><h1>Data siswa</h1></center>
+    <br><br>
+    <form action="<?php echo base_url().'main/editsiswa'; ?>" method="post">
+    <table class="table table-bordered " >
   <thead class ="table table-dark">
     <tr>
-      <th scope="col" name="idpembayaran">id pembayaran</th>
-      <th scope="col" name="idpetugas">id petugas</th>
-      <th scope="col" name="nisn">nisn siswa</th>
-      <th scope="col" name="tglbayar">tanggal Bayar</th>
-      <th scope="col" name="bulanbayar">bulan bayar</th>
-      <th scope="col" name="tahunbayar">tahun bayar</th>
+      <th scope="col" name="nisn">nisn</th>
+      <th scope="col" name="nis">nis</th>
+      <th scope="col" name="email">email</th>
+      <th scope="col" name="nama">nama</th>
+      <th scope="col" name="password">password</th>
+      <th scope="col" name="idkelas">id kelas</th>
+      <th scope="col" name="alamat">alamat</th>
+      <th scope="col" name="notelp">notelp</th>
       <th scope="col" name="idspp">id_spp</th>
-      <th scope="col" name="jumlahbayar">jumlah bayar</th>
+      <th scope="col" >option</th>
     </tr>
   </thead>
   <?php
-  $query = $this->db->get('pembayaran');
+  $query = $this->db->get('siswa');
     foreach($query->result() as $row){
         ?>
       <tr>
 
-        <td><?php echo $row->id_pembayaran;?></td>
-        <td><?php echo $row->id_petugas;?></td>
         <td><?php echo $row->nisn;?></td>
-        <td><?php echo $row->tanggal_bayar;?></td>
-        <td><?php echo $row->bulan_bayar;?></td>
-        <td><?php echo $row->tahun_bayar;?></td>
+        <td><?php echo $row->nis;?></td>
+        <td><?php echo $row->email;?></td>
+        <td><?php echo $row->nama;?></td>
+        <td><?php echo $row->password;?></td>
+        <td><?php echo $row->id_kelas;?></td>
+        <td><?php echo $row->alamat;?></td>
+        <td><?php echo $row->notelp;?></td>
         <td><?php echo $row->id_spp;?></td>
-        <td><?php echo $row->jumlah_bayar;?></td>
+        <td>
+      <a href="<?php echo site_url('Main/editsiswa/'.$row->nisn) ?>">Edit</a> ||
+      <a href="<?php echo site_url('Main/deletesiswa/'.$row->nisn) ?>">Delete</a>
   <?php }?>
       </tr>
     </tbody>
