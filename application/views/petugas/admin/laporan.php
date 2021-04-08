@@ -2,37 +2,58 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/navbar.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <link rel="stylesheet" type="text/css" href="style.css" />
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
     <?php include 'application/views/include/navbar.php'; ?>
-    <center><h1>Laporan SPP per-tahun</h1></center>
+    <center><h1>Data Laporan SPP </h1></center>
+    <br>
     <form action="<?php echo base_url(). 'user/create'; ?>" method="post">
     <table class="table table-bordered container" >
   <thead class ="table table-dark">
     <tr>
-      <th scope="col" name="idspp">id spp</th>
-      <th scope="col" name="tahun">tahun</th>
-      <th scope="col" name="nominal">nominal</th>
-      <th scope="col" >option</th>
+      <th scope="col" >nisn</th>
+      <th scope="col" >nama</th>
+      <th scope="col" >id_spp</th>
+      <th scope="col" >tanggal bayar</th>
+      <th scope="col" >bulan bayar</th>
+      <th scope="col" >tahun bayar</th>
+      <th scope="col" >jumlah bayar</th>
+      <th scope="col" >status</th>
+      
     </tr>
   </thead>
   <?php
-  $query = $this->db->get('spp');
-    foreach($query->result() as $row){
+  $pemb = $this->db->get('pembayaran');
+    foreach($pemb->result() as $lapor){
+
+      $query = $this->db->get_where('siswa', array('nisn' => $lapor->nisn));
+      
+      //////////// Status SPP (Lunas / Belum lunas) ////////////
+      if($lapor->jumlah_bayar >= 200000){
+        $status ="lunas";
+    }elseif($lapor->jumlah_bayar < 200000){
+        $status ="belum lunas";
+      }
+      //////////////////////////////////////////////////////////
+      
+        foreach($query->result() as $sis){
         ?>
       <tr>
-
-        <td><?php echo $row->id_spp;?></td>
-        <td><?php echo $row->tahun;?></td>
-        <td><?php echo $row->nominal;?></td>
-        <td>
-      <a href="<?php echo site_url('Main/editspp/'.$row->id_spp) ?>">Edit</a> ||
-      <a href="<?php echo site_url('Main/deletespp/'.$row->id_spp) ?>">Delete</a>
-  <?php }?>
+        <td><?php echo $lapor->nisn;?></td>
+        <td><?php echo $sis->nama;?></td>
+        <td><?php echo $lapor->id_spp;?></td>
+        <td><?php echo $lapor->tanggal_bayar;?></td>
+        <td><?php echo $lapor->bulan_bayar;?></td>
+        <td><?php echo $lapor->tahun_bayar;?></td>
+        <td><?php echo $lapor->jumlah_bayar;?></td>
+        <td><?php echo $status?></td>
+  <?php }}?>
       </tr>
     </tbody>
 </form>

@@ -16,8 +16,9 @@
 <body>
 <?php include 'application/views/include/navbar.php'; ?>
     <center><h1>Data siswa</h1></center>
-    <br><br>
-    <form action="<?php echo base_url().'main/editsiswa'; ?>" method="post">
+    <button type="button" class="btn btn-success add">  <a href="<?php echo site_url('Main/addsiswaform/') ?>" class="add2 ">Tambah data Petugas</a> </button>
+    <br><p>
+    <form>
     <table class="table table-bordered " >
   <thead class ="table table-dark">
     <tr>

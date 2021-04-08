@@ -5,15 +5,17 @@ class model extends CI_Model{
         $query=$this->db->query("SELECT * FROM petugas WHERE id_petugas='$username' AND sandi=MD5('$password') LIMIT 1");
         return $query;
     }
-    function auth_siswa($username,$password){
-        $query=$this->db->query("SELECT * FROM siswa WHERE nisn='$username' AND sandi=MD5('$password') LIMIT 1");
+    function auth_siswa($nisn,$password){
+        $query=$this->db->query("SELECT * FROM siswa WHERE nisn='$nisn' AND password='$password' LIMIT 1");
         return $query;
     }
     function input($data,$pembayaran){
 		$this->db->insert($pembayaran,$data);
 	}
-    
-     //////////////  Model SISWA //////////////
+    //////////////////////////////////////////
+    //////////////  Model SISWA //////////////
+    //////////////////////////////////////////
+
     function updatesiswa($data,$siswa,$nisn){
         $this->db->where('nisn', $nisn);
 		$this->db->update($siswa,$data);
@@ -24,8 +26,15 @@ class model extends CI_Model{
     public function editsiswa($id){
         return $this->db->get_where('siswa',['nisn' => $id])->row();
     }
+    function inputsiswa($data,$siswa){
+		$this->db->insert('siswa',$data);
+	}
 
+
+    ////////////////////////////////////////////
     //////////////  Model PETUGAS //////////////
+    ////////////////////////////////////////////
+
     public function editpetugas($idpetugas){
         return $this->db->get_where('petugas',['id_petugas' => $idpetugas])->row();
     }
@@ -36,8 +45,14 @@ class model extends CI_Model{
     public function deletepetugas($idpetugas){
         $this->db->delete('petugas', ['id_petugas' => $idpetugas]);
     }    
+    function inputpetugas($data,$petugas){
+		$this->db->insert('petugas',$data);
+	}
 
-     //////////////  Model KELAS //////////////
+    //////////////////////////////////////////
+    //////////////  Model KELAS //////////////
+    //////////////////////////////////////////
+
      public function editkelas($id_kelas){
         return $this->db->get_where('kelas',['id_kelas' => $id_kelas])->row();
     }
@@ -48,9 +63,13 @@ class model extends CI_Model{
     public function deletekelas($idkelas){
         $this->db->delete('kelas', ['id_kelas' => $idkelas]);
     }
+    function inputkelas($data,$kelas){
+		$this->db->insert('kelas',$data);
+	}
 
-
-     //////////////  Model SPP //////////////
+    ////////////////////////////////////////  
+    //////////////  Model SPP //////////////
+    ////////////////////////////////////////  
 
      public function editspp($id_spp){
         return $this->db->get_where('spp',['id_spp' => $id_spp])->row();
@@ -62,6 +81,9 @@ class model extends CI_Model{
     public function deletespp($idspp){
         $this->db->delete('spp', ['id_spp' => $idspp]);
     } 
+    function inputspp($data,$spp){
+		$this->db->insert('spp',$data);
+	}
 
 
 

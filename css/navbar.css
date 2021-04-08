@@ -22,3 +22,11 @@ li a {
 li a:hover {
     background-color: rgb(22, 38, 48);
   }
+.add{
+  float: right;
+  margin-right: 280px;
+}
+.add2{
+  text-decoration: none;
+  color:black;
+}

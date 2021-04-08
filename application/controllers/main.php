@@ -14,6 +14,8 @@ class main extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('session');
     }
+
+
     public function auth(){
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
@@ -74,7 +76,34 @@ class main extends CI_Controller {
 		}
 	}	
 
-	///////////// 	Transaksi Pembayaran 	/////////////
+
+	function loginsiswaform(){
+		$this->load->view('auth/loginsiswa');
+	}
+	function loginsiswa(){
+			$email = $this->input->post('email');
+			$password = $this->input->post('password');
+			
+			$siswa = $this->db->get_where('siswa',['email'=> $email])->row_array();
+			if($siswa['email'] == $email){
+				if(password_verify($password, $siswa['password'])){
+					$data = [
+						'email' => $siswa['email'],
+						'nama' => $siswa['nama'],
+						'nisn' => $siswa['nisn']
+
+					];
+					$this->session->set_userdata($data);
+					$this->load->view('siswa/mainpagesiswa');
+					}
+				}
+			}
+	function vsiswa(){
+		$this->load->view('siswa/history');
+	}
+	/////////////////////////////////////////////////////////
+	///////////// 	Transaksi Pembayaran 	/////////////////
+	/////////////////////////////////////////////////////////
 
 	function transaksi(){
 		$this->load->view('petugas/transaksi');
@@ -101,21 +130,46 @@ class main extends CI_Controller {
 			'jumlah_bayar' => $jumlahbayar
 			);
 		$this->model->input($data,'pembayaran');
-		if($data == TRUE){
-			echo '<script>';
-			echo 'alert("Pembayaran berhasil!!")';
-			echo '</script>';
-		}
 		redirect('user/tampil');
 	}
 
-
+	/////////////////////////////////////////////////////////////
 	///////////// 	UPDATE SISWA | | DELETE SISWA 	/////////////
+	/////////////////////////////////////////////////////////////
 	function editsiswa($id){
 		$data['siswa'] = $this->model->editsiswa($id);
 	
 		$this->load->view('petugas/admin/editsiswa',$data);
 	}
+	function addsiswaform(){
+		$this->load->view('petugas/admin/addsiswa');
+	}
+	function addsiswa(){
+		$nisn = $this->input->post('nisn');
+		$nis = $this->input->post('nis');
+		$email = $this->input->post('email');
+		$nama = $this->input->post('nama');
+		$password = $this->input->post('password');
+		$idkelas = $this->input->post('idkelas');
+		$alamat = $this->input->post('alamat');
+		$notelp = $this->input->post('notelp');
+		$idspp = $this->input->post('idspp');
+
+		$siswa = $this->db->get_where('siswa',['nisn'=> $nisn])->row_array();
+		$data = array(
+			'nisn' => $nisn,
+			'nis' => $nis,
+			'email' => $email,
+			'nama' => $nama,
+			'password' => $password,
+			'id_kelas' => $idkelas,
+			'alamat' => $alamat,
+			'notelp' => $notelp,
+			'id_spp' => $idspp
+			);
+		$this->model->inputsiswa($data,'siswa');
+		$this->load->view('petugas/admin/crud/siswa');
+		}
 	function updatesiswa(){
 		$nisn = $this->input->post('nisn');
 		$nis = $this->input->post('nis');
@@ -146,18 +200,38 @@ class main extends CI_Controller {
 		$this->load->view('petugas/admin/crud/siswa');
 	}
 
-///////////// 	UPDATE PETUGAS | | DELETE PETUGAS 	/////////////
-
+	/////////////////////////////////////////////////////////////////
+	///////////// 	UPDATE PETUGAS | | DELETE PETUGAS 	/////////////
+	/////////////////////////////////////////////////////////////////
 
 	function editpetugas($id_petugas){
 		$data['petugas'] = $this->model->editpetugas($id_petugas);
 		$this->load->view('petugas/admin/editpetugas',$data);
 	}
-	function updatepetugas(){
-		$idpetugas = $this->input->post('id_petugas');
+	function addpetugasform(){
+		$this->load->view('petugas/admin/addpetugas');
+	}
+	function addpetugas(){
+		$idpetugas = $this->input->post('idpetugas');
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
-		$namapetugas = $this->input->post('nama_petugas');
+		$namapetugas = $this->input->post('namapetugas');
+		$level = $this->input->post('level');
+		$data = array(
+			'id_petugas' => $idpetugas,
+			'email' => $email,
+			'password' => $password,
+			'nama_petugas' => $namapetugas,
+			'level' => $level
+			);
+		$this->model->inputpetugas($data,'petugas');
+		$this->load->view('petugas/admin/crud/petugas');
+		}
+	function updatepetugas(){
+		$idpetugas = $this->input->post('idpetugas');
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+		$namapetugas = $this->input->post('namapetugas');
 		$level = $this->input->post('level');
 
 		$petugas = $this->db->get_where('petugas',['id_petugas'=> $idpetugas])->row_array();
@@ -176,12 +250,30 @@ class main extends CI_Controller {
 		$this->load->view('petugas/admin/crud/petugas');
 	}
 
+	/////////////////////////////////////////////////////////////
 	///////////// 	UPDATE KELAS | | DELETE KELAS 	/////////////
+	/////////////////////////////////////////////////////////////
 
 	function editkelas($idkelas){
 		$data['kelas'] = $this->model->editkelas($idkelas);
 		$this->load->view('petugas/admin/editkelas',$data);
 	}
+	function addkelasform(){
+		$this->load->view('petugas/admin/addkelas');
+	}
+	function addkelas(){
+
+		$idkelas = $this->input->post('idkelas');
+		$nakel = $this->input->post('namakelas');
+		$ahli = $this->input->post('keahlian');
+		$data = array(
+			'id_kelas' => $idkelas,
+			'nama_kelas' => $nakel,
+			'kompetensi_keahlian' => $ahli
+			);
+		$this->model->inputkelas($data,'kelas');
+		$this->load->view('petugas/admin/crud/kelas');
+		}
 
 	function updatekelas(){
 		$idkelas = $this->input->post('id');
@@ -202,13 +294,30 @@ class main extends CI_Controller {
 		$this->model->deletekelas($id_kelas);
 		$this->load->view('petugas/admin/crud/kelas');
 	}
-
+	/////////////////////////////////////////////////////////
 	///////////// 	UPDATE SPP | | DELETE SPP 	/////////////
+	/////////////////////////////////////////////////////////
 
 	function editspp($id_spp){
 		$data['spp'] = $this->model->editspp($id_spp);
 		$this->load->view('petugas/admin/editspp',$data);
 	}
+	function addsppform(){
+		$this->load->view('petugas/admin/addspp');
+	}
+	function addspp(){
+
+		$idspp = $this->input->post('idspp');
+		$tahun = $this->input->post('tahun');
+		$nominal = $this->input->post('nominal');
+		$data = array(
+			'id_spp' => $idspp,
+			'tahun' => $tahun,
+			'nominal' => $nominal
+			);
+		$this->model->inputspp($data,'spp');
+		$this->load->view('petugas/admin/crud/spp');
+		}
 
 	function updatespp(){
 		$idspp = $this->input->post('idspp');
@@ -225,10 +334,15 @@ class main extends CI_Controller {
 		$this->model->updatespp($data,'spp',$idspp);
 		$this->load->view('petugas/admin/crud/spp');
 	}
-	function deletespp($idpetugas){
+	function deletespp($idspp){
 		$this->model->deletespp($idspp);
 		$this->load->view('petugas/admin/crud/spp');
 	}
+	/////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////
+
+
+	
 
 	function homepetugas(){
 		$data['petugas'] = $this->db->get_where('petugas',['email' => $this->session->userdata('email')])->row_array();

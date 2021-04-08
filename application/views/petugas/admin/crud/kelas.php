@@ -17,7 +17,9 @@
 <?php include 'application/views/include/navbar.php'; ?>
     <center><h1>Data Kelas</h1></center>
     <br><br>
-    <form action="<?php echo base_url().'main/editkelas'; ?>" method="post">
+    <button type="button" class="btn btn-success add">  <a href="<?php echo site_url('Main/addkelasform') ?>" class="add2">Tambah data Kelas</a> </button>
+    <br><p>
+    <form>
     <table class="table table-bordered container" >
   <thead class ="table table-dark">
     <tr>

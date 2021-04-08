@@ -14,17 +14,16 @@
     <title>Document</title>
 </head>
 <body>
-<?php include 'application/views/include/navbar.php'; ?>
-    <center><h1>History Pembayaran (Admin & Petugas)</h1></center>
+<?php include 'application/views/include/navbarsiswa.php'; ?>
+    <center><h1>History Pembayaran (Siswa)</h1></center>
     <form>
-    <button type="button" class="btn btn-success add">  <a href="<?php echo site_url('Main/transaksi/') ?>" class="add2">Pembayaran</a> </button>
     <br><p>
     <table class="table table-bordered container" >
   <thead class ="table table-dark">
     <tr>
-      <th scope="col" name="idpembayaran">id pembayaran</th>
-      <th scope="col" name="idpetugas">id petugas</th>
-      <th scope="col" name="nisn">nisn siswa</th>
+      <th scope="col" name="idpembayaran">nisn</th>
+      <th scope="col" name="idpetugas">nama</th>
+      <th scope="col" name="nisn">id_spp</th>
       <th scope="col" name="tglbayar">tanggal Bayar</th>
       <th scope="col" name="bulanbayar">bulan bayar</th>
       <th scope="col" name="tahunbayar">tahun bayar</th>
@@ -33,20 +32,30 @@
     </tr>
   </thead>
   <?php
-  $query = $this->db->get('pembayaran');
-    foreach($query->result() as $row){
+  $pemb = $this->db->get('pembayaran');
+    foreach($pemb->result() as $lapor){
+        if($lapor->jumlah_bayar >= 200000){
+            $status ="lunas";
+        }elseif($lapor->jumlah_bayar < 200000){
+            $status ="belum lunas";
+        }
+        $siswa = $this->db->get_where('siswa', array('nisn' => $this->session->userdata('nisn')));
+        foreach($siswa->result() as $sis){
+            $nisnn = $this->session->userdata('nisn');
+            if($lapor->nisn == $sis->nisn){
+                return $nisnn; 
+            }
         ?>
       <tr>
-
-        <td><?php echo $row->id_pembayaran;?></td>
-        <td><?php echo $row->id_petugas;?></td>
-        <td><?php echo $row->nisn;?></td>
-        <td><?php echo $row->tanggal_bayar;?></td>
-        <td><?php echo $row->bulan_bayar;?></td>
-        <td><?php echo $row->tahun_bayar;?></td>
-        <td><?php echo $row->id_spp;?></td>
-        <td><?php echo $row->jumlah_bayar;?></td>
-  <?php }?>
+        <td><?php echo $nisnn;?></td>
+        <td><?php echo $sis->nama;?></td>
+        <td><?php echo $lapor->id_spp;?></td>
+        <td><?php echo $lapor->tanggal_bayar;?></td>
+        <td><?php echo $lapor->bulan_bayar;?></td>
+        <td><?php echo $lapor->tahun_bayar;?></td>
+        <td><?php echo $lapor->jumlah_bayar;?></td>
+        <td><?php echo $status?></td>
+  <?php }}?>
       </tr>
     </tbody>
 </form>

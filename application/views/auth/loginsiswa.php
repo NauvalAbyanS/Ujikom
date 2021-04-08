@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/login.css">
   <title>WEB SPP Login</title>
 </head>
 <body>
 
-  <div class="form">
+<form class="user form"  action="<?=base_url('main/loginsiswa'); ?>" method="post">
   <center> <h2> LOGIN SISWA</h2></center>
     <div class="left">
-  <p> username </p>
-    <input type="text"  class="inp" placeholder="username" >  
-  <p> Password </p>
-    <input type="password"  class="inp" placeholder="password"> 
-  <p> <center><button type="submit" value="login" href="/views/admin/mainpageadmin.php"> </center></button> </p>
-  </div>
-  </div>  
-
+      <label> email </label>
+    <input type="text"  class="inp" name="email" placeholder="email" value="<?php echo set_value('email'); ?>">
+    <p></p>
+  <label> Password </label>
+<input type="password"  class="inp"  name="password" placeholder="password" value="<?php echo set_value('password'); ?>"> 
+  <p> <center><input type="submit" value="login"></center></input></p>
+      </div>
+</form>
 </body>
 </html>

@@ -8,40 +8,32 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Edit data</title>
+    <title>Transaksi pembayaran</title>
 </head>
 <body>
-    
-
     <p><?php include 'application/views/include/navbar.php'; ?><p>
-
-<center><h4>Edit data kelas</h1></center><br><br>
- <form class="container border" action="<?=base_url('main/updatespp'); ?>" method="post">
-    <div class="row">
-        <div class="col">
+<center><h4>Tambah data SPP</h1></center><br><br>
+ <form class="container border" action="<?=base_url('main/addspp'); ?>" method="post">
         <br><br> 
-  <div class="row">
-    <div class="col">
-        <label> id spp </label><br>
-        <input type="text" class="form-control" value="<?php echo $spp->id_spp; ?>" name="idspp">
-    </select><br>
-    </div><div class="col">
-        <label> tahun </label><br>
-        <input type="text" class="form-control" value="<?php echo $spp->tahun; ?>" name="tahun">
-    </select><br>
-    </div>
-        </div>
             <div class="row">
-                <div class="col-6">
-            <label> Nominal  </label>
-        <input type="text" class="form-control" value="<?php echo $spp->nominal; ?>" name="nominal">
-        <br>
+                <div class="col">
+            <label> id spp</label>
+        <input type="text" class="form-control" placeholder="id_spp" name="idspp">
         </div>
-    </div>
+            <div class="col">
+                <label> Tahun</label>
+                    <input type="text" class="form-control" placeholder="tahun" name="tahun" >
+                </div>
+            <div class="col-4">
+         <label> Nominal</label>
+    <input type="text" class="form-control" placeholder="nominal" name="nominal">
+        </div>
+</div>
+<br>
 <button type="submit" class="btn btn-secondary">Submit</button>
 <p>
-</div>
 
+</div>
 </form>
 </body>
 </html>

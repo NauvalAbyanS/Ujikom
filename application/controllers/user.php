@@ -18,7 +18,9 @@ class user extends CI_Controller {
         echo 'selamat datang '. $data['siswa']['nama_siswa']  . '!!';
     }
     function tampil(){
-
+        // echo '<script>';
+        // echo 'alert("Pembayaran berhasil!!")';
+        // echo '</script>';
 		$this->load->view('petugas/history');
 	}
 

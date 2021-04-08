@@ -28,6 +28,11 @@
         <select name="nisn" >
         <option value="000123">000123</option>
         <option value="000456">000456</option>
+        <option value="002389">002389</option>
+        <option value="002546">002546</option>
+        <option value="004485">004485</option>
+        <option value="004862">004862</option>
+        <option value="005489">005489</option>
     </select><br>
     </div><div class="col-10">
         <label> id_spp </label><br>
@@ -63,7 +68,7 @@
 
 </div>
 <button type="submit" class="btn btn-secondary">Submit</button>
-
+<p>
 </div>
 </form>
 </body>

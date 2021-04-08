@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/style.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/buttonpc.css">
 
   <style>
   </style>
@@ -13,12 +14,17 @@
 
 </head>
 <body>
-<?php include 'application/views/include/navbar.php'; ?>
+<?php include 'application/views/include/navbarsiswa.php'; ?>
     <div class="centext"> 
-      <h1> Anda login sebagai Siswa </h1>
-      <h3> ingin melihat history pembayaranmu? </h3>
+    <h1><?php $data['siswa'] = $this->db->get_where('siswa',['email' => $this->session->userdata('email')])->row_array();
+        echo 'selamat datang '. $data['siswa']['nama']  . ' Anda adalah Siswa!'?></h1>
+      <h2> ingin melihat history pembayaranmu? </h2>
     </div>
-    <button type="button" class="buttonsis"> History pembayaran</button>
+    
+    <form action="<?= base_url('main/vsiswa'); ?>" method="post">
+    <button type="submit" class="buttonsis" value="history" name="button"> History pembayaran</button>
+    
+</form>
 </div>
 </body>
 </html>
