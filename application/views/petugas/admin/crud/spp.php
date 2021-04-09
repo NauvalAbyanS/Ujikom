@@ -17,7 +17,7 @@
 <?php include 'application/views/include/navbar.php'; ?>
     <center><h1>Data SPP</h1></center>
     <br><br>
-    <button type="button" class="btn btn-success add">  <a href="<?php echo site_url('Main/addsppform') ?>" class="addd">Tambah data SPP</a> </button>
+    <button type="button" class="btn btn-success add">  <a href="<?php echo site_url('Main/addsppform') ?>" class="add2">Tambah data SPP</a> </button>
     <br><p>
     <form>
     <table class="table table-bordered container" >

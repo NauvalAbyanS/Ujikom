@@ -21,8 +21,8 @@
       <h2> ingin melihat history pembayaranmu? </h2>
     </div>
     
-    <form action="<?= base_url('main/vsiswa'); ?>" method="post">
-    <button type="submit" class="buttonsis" value="history" name="button"> History pembayaran</button>
+    <form action="<?= base_url('main/historysiswa'); ?>" method="post">
+    <button type="submit" class="button1" value="history" name="button"> History pembayaran</button>
     
 </form>
 </div>

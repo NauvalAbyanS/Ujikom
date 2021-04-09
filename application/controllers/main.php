@@ -15,17 +15,21 @@ class main extends CI_Controller {
         $this->load->library('session');
     }
 
-
+	function loginsiswaform(){
+		$this->load->view('auth/loginsiswa');
+	}
     public function auth(){
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 
 		$petugas = $this->db->get_where('petugas',['email'=> $email])->row_array();
+		$siswa = $this->db->get_where('siswa',['email'=> $email])->row_array();
 		if($petugas){
 			if($petugas['level'] == 1){
 				if(password_verify($password, $petugas['password'])){
 					$data = [
 						'email' => $petugas['email'],
+						'nama_petugas' => $petugas['nama_petugas'],
 						'level' => $petugas['level'],
 						'id_petugas' => $petugas['id_petugas']
 					];
@@ -43,16 +47,28 @@ class main extends CI_Controller {
 					redirect('user/indexpetugas');
 				}
 			}
-		}else{
-			echo "data tidak ditemukan";
+		}if($siswa['email'] == $email){
+			if(password_verify($password, $siswa['password'])){
+				$data = [
+					'email' => $siswa['email'],
+					'nama' => $siswa['nama'],
+					'nisn' => $siswa['nisn']
+
+				];
+				$this->session->set_userdata($data);
+				$this->load->view('siswa/mainpagesiswa');
+				}
+			}else{
+				echo "data tidak ditemukan";
+			}
 		}
-	}
+	
 		public function link(){
 			$button = $_POST['button'];
     	if ($button == 'transaksi'){
        		$this->load->view('petugas/transaksi');
     	}elseif ($button == 'history'){
-			$this->load->view('petugas/history');
+			redirect('main/historype');
 	 	}elseif ($button == 'editdata'){
 			$this->load->view('petugas/admin/editdata');
 	 	}elseif ($button == 'laporan'){
@@ -77,30 +93,33 @@ class main extends CI_Controller {
 	}	
 
 
-	function loginsiswaform(){
-		$this->load->view('auth/loginsiswa');
-	}
-	function loginsiswa(){
-			$email = $this->input->post('email');
-			$password = $this->input->post('password');
-			
-			$siswa = $this->db->get_where('siswa',['email'=> $email])->row_array();
-			if($siswa['email'] == $email){
-				if(password_verify($password, $siswa['password'])){
-					$data = [
-						'email' => $siswa['email'],
-						'nama' => $siswa['nama'],
-						'nisn' => $siswa['nisn']
-
-					];
-					$this->session->set_userdata($data);
-					$this->load->view('siswa/mainpagesiswa');
-					}
-				}
-			}
+	
+	
 	function vsiswa(){
 		$this->load->view('siswa/history');
 	}
+	function historype(){
+		$pembayaran = $this->model->getall();
+		
+		
+		foreach($pembayaran->result() as $a){
+			$nape = $this->model->getnamepetugas($a->id_petugas);
+			$nasi = $this->model->getnamesiswa($a->nisn);
+			
+			$namasipe[] = array(
+				'id_pembayaran' => $a->id_pembayaran,
+				'namapetugas' => $nape[0]->nama_petugas,
+				'namasiswa' => $nasi[0]->nama,
+				'tanggalbayar'=> $a->tanggal_bayar,
+				'bulanbayar'=> $a->bulan_bayar,
+				'jumlahbayar'=> $a->jumlah_bayar,
+				'tahunbayar'=> $a->tahun_bayar
+			);
+		}$data['pembayaran'] = $namasipe;
+		// var_dump($namasipe);
+		$this->load->view('petugas/history', $data);
+	}
+
 	/////////////////////////////////////////////////////////
 	///////////// 	Transaksi Pembayaran 	/////////////////
 	/////////////////////////////////////////////////////////
@@ -117,8 +136,11 @@ class main extends CI_Controller {
 		$bulan = $this->input->post('bulan');
 		$tahun = $this->input->post('tahun');
 		$jumlahbayar = $this->input->post('jumbay');
-
+		
+		
 		$siswa = $this->db->get_where('siswa',['nisn'=> $nisn])->row_array();
+		
+		
 		$data = array(
 			'id_pembayaran' => $idpembayaran,
 			'id_petugas' => $idpetugas,
@@ -128,7 +150,7 @@ class main extends CI_Controller {
 			'tahun_bayar' => $tahun,
 			'id_spp' => $idspp,
 			'jumlah_bayar' => $jumlahbayar
-			);
+		);
 		$this->model->input($data,'pembayaran');
 		redirect('user/tampil');
 	}
@@ -199,13 +221,38 @@ class main extends CI_Controller {
 		$this->model->deletesiswa($nisn);
 		$this->load->view('petugas/admin/crud/siswa');
 	}
+	function historysiswa(){
+		$pembayaran = $this->model->getsiswa($this->session->userdata('nisn'));
+		
+		foreach($pembayaran->result() as $a){
+			$nape = $this->model->getnamepetugas($a->id_petugas);
+			$nasi = $this->model->getnamesiswa($a->nisn);
+			if($a->jumlah_bayar >= 200000){
+				$status ="lunas";
+			}elseif($a->jumlah_bayar < 200000){
+				$status ="belum lunas";
+			}
+
+			$namasipe[] = array(
+				'nisn' => $a->nisn,
+				'namasiswa' => $nasi[0]->nama,
+				'tanggalbayar'=> $a->tanggal_bayar,
+				'bulanbayar'=> $a->bulan_bayar,
+				'jumlahbayar'=> $a->jumlah_bayar,
+				'tahunbayar'=> $a->tahun_bayar,
+				'status' => $status
+			);
+		}$data['pembayaran'] = $namasipe;
+		// var_dump($namasipe);
+		$this->load->view('siswa/history', $data);
+	}
 
 	/////////////////////////////////////////////////////////////////
 	///////////// 	UPDATE PETUGAS | | DELETE PETUGAS 	/////////////
 	/////////////////////////////////////////////////////////////////
 
-	function editpetugas($id_petugas){
-		$data['petugas'] = $this->model->editpetugas($id_petugas);
+	function editpetugas($id){
+		$data['petugas'] = $this->model->editpetugas($id);
 		$this->load->view('petugas/admin/editpetugas',$data);
 	}
 	function addpetugasform(){
@@ -215,7 +262,7 @@ class main extends CI_Controller {
 		$idpetugas = $this->input->post('idpetugas');
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
-		$namapetugas = $this->input->post('namapetugas');
+		$namapetugas = $this->input->post('nama');
 		$level = $this->input->post('level');
 		$data = array(
 			'id_petugas' => $idpetugas,
@@ -233,6 +280,22 @@ class main extends CI_Controller {
 		$password = $this->input->post('password');
 		$namapetugas = $this->input->post('namapetugas');
 		$level = $this->input->post('level');
+		$notelp = $this->input->post('notelp');
+		$idspp = $this->input->post('idspp');
+
+		// $siswa = $this->db->get_where('siswa',['nisn'=> $nisn])->row_array();
+		// $data = array(
+		// 	'nis' => $nis,
+		// 	'email' => $email,
+		// 	'nama' => $nama,
+		// 	'password' => $password,
+		// 	'id_kelas' => $idkelas,
+		// 	'alamat' => $alamat,
+		// 	'notelp' => $notelp,
+		// 	'id_spp' => $idspp
+		// 	);
+		// $this->model->updatesiswa($data,'siswa',$nisn);
+		// $this->load->view('petugas/admin/crud/siswa');
 
 		$petugas = $this->db->get_where('petugas',['id_petugas'=> $idpetugas])->row_array();
 		$data = array(
@@ -242,6 +305,7 @@ class main extends CI_Controller {
 			'nama_petugas' => $namapetugas,
 			'level' => $level
 			);
+	
 		$this->model->updatepetugas($data,'petugas',$idpetugas);
 		$this->load->view('petugas/admin/crud/petugas');
 	}
@@ -340,6 +404,17 @@ class main extends CI_Controller {
 	}
 	/////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////
+
+	function laporan(){
+		$tahun = $this->input->post('tahun');
+		$pemb = $this->db->get_where('pembayaran',['tahun_bayar'== $tahun])->row_array();
+			$pemb['tahun_bayar'] = $tahun;
+			$sql = "SELECT * FROM pembayaran WHERE tahun_bayar = ?";
+			$this->db->query($sql, array($tahun));
+			$this->load->view('petugas/admin/laporan');
+		
+	}
+
 
 
 	

@@ -20,39 +20,36 @@
     <div class="row">
         <div class="col">
         <br><br> 
-  <div class="row">
-    <div class="col">
-        <label> level </label><br>
-        <select name="level">
-        <option value="1" <?php echo ($petugas->level ? '1' : 'selected' ); ?>>1</option>
-        <option value="2" <?php echo ($petugas->level ? '2' : 'selected' ); ?>>2</option>
-    </select><br>
-    </div><div class="col-10">
-        <label> id_petugas </label><br>
-        <input type="text" class="form-control" value="<?php echo $petugas->id_petugas; ?>" name="id_petugas">
-    </select><br>
-    </div>
-        </div>
-            <div class="row">
-                <div class="col">
-            <label> email
-        <input type="text" class="form-control" value="<?php echo $petugas->email; ?>" name="email">
-    </label>
-        </div>
-            <div class="col">
-                <label> password
-                    <input type="text" class="form-control" value="<?php echo $petugas->password; ?>" name="password" >
-                </label>
+        <div class="row">
+  <div class="col-3">
+        <label> id Petugas</label>
+                    <input type="text" class="form-control" value="<?php echo $petugas->id_petugas; ?>"name="idpetugas" >
             </div>
-        <div class="col-8">
-    <label> nama petugas
-        <input type="text" class="form-control" value="<?php echo $petugas->nama_petugas; ?>" name="nama_petugas">
-            </label>
+    <div class="col-1">
+        <label> level </label><br>
+        <input type="text" class="form-control" value="<?php echo $petugas->level; ?>" name="level"></input><br>
+        </div>
+    </div>
+  
+            <div class="row">
+                <div class="col-3">
+            <label>nama petugas </label>
+        <input type="text" class="form-control" value="<?php echo $petugas->nama_petugas; ?>" name="namapetugas">
+        </div>
+            <div class="col-3">
+                <label>email </label>
+                    <input type="text" class="form-control" value="<?php echo $petugas->email; ?>" name="email" >
+
+            </div>
+        <div class="col-3">
+    <label> password</label>
+        <input type="text" class="form-control" value="<?php echo $petugas->password; ?>" name="password">
+            
         </div>
     </div>
     
 </div>
-</div>
+</div><br>
 <button type="submit" class="btn btn-secondary">Submit</button>
 <p>
 

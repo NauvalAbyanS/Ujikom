@@ -25,23 +25,23 @@
   <div class="row">
     <div class="col">
         <label> NISN Siswa </label><br>
-        <select name="nisn" >
-        <option value="000123">000123</option>
-        <option value="000456">000456</option>
-        <option value="002389">002389</option>
-        <option value="002546">002546</option>
-        <option value="004485">004485</option>
-        <option value="004862">004862</option>
-        <option value="005489">005489</option>
-    </select><br>
-    </div><div class="col-10">
-        <label> id_spp </label><br>
-        <select name="idspp">
+    <select name="nisn" >
+        <option value="000123">Evaldo Mahabrata</option>
+        <option value="000456">Ibrahim Azis</option>
+        <option value="002389">Muhammad Reza</option>
+        <option value="002546">Althof Naufal Fadhlan</option>
+        <option value="004485">Jeremy Putra</option>
+        <option value="004862">Alifikri Muenpa</option>
+        <option value="005489">Rendi Triwahyudi</option>
+    </select>
+    <div class="col-1">
+    <label> id_spp </label><br>
+    <select name="idspp">
             <option value="11">11</option>
             <option value="12">12</option>
     </select><br>
     </div>
-        </div>
+        </div></div>
             <div class="row">
                 <div class="col">
             <label> Tanggal

@@ -19,52 +19,51 @@
  <form class="container border" action="<?=base_url('main/addsiswa'); ?>" method="post">
         <br>
   <div class="row">
-    <div class="col-4">
+    <div class="col-2">
         <label> NISN Siswa </label><br>
-        <input type="text" class="form-control" placeholder="nisn" name="nisn">
+        <input type="text" class="form-control" placeholder="nisn" name="nisn"></input>
         <br>
-    </div><div class="col-4">
-        <label> nis </label><br>
-        <input type="text" class="form-control" placeholder="nis" name="nis">
-    </select><br>
+    </div><div class="col-2">
+        <label> NIS siswa </label><br>
+        <input type="text" class="form-control" placeholder="nis" name="nis"></input>
+    </select>
     </div>
+         <div class="col-4">
+                <label> Nama Siswa</label>
+                    <input type="text" class="form-control" placeholder="nama" name="nama" ></input>
+            </div><br>
         </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
             <label> email </label>
-        <input type="text" class="form-control" placeholder="email" name="email">
+        <input type="text" class="form-control" placeholder="email" name="email"></input>
    
         </div>
-            <div class="col-4">
-                <label> nama</label>
-                    <input type="text" class="form-control" placeholder="nama" name="nama" >
-                
-            </div>
-        <div class="col-sm-3">
+            
+        <div class="col-3">
     <label> password </label>
-        <input type="text" class="form-control" placeholder="password" name="password">
-           
+        <input type="text" class="form-control" placeholder="password" name="password"></input>
+           <br>
+        </div>
+        <div class="col-4">
+            <label> alamat</label>
+                <textarea class="form-control " placeholder="alamat" name="alamat"></textarea>
         </div>
     </div>
     <div class="row">
-                <div class="col-sm-2">
+                <div class="col-2">
             <label> id kelas</label>
-        <input type="text" class="form-control " placeholder="id_kelas" name="idkelas">
+        <input type="text" class="form-control " placeholder="id_kelas" name="idkelas"></input>
     
         </div>
-                <div class="col-sm-4">
-            <label> alamat</label>
-        <input type="text" class="form-control " placeholder="alamat" name="alamat">
-    
-</div>
-                <div class="col-sm-2">
+                
+                <div class="col-2">
             <label> notelp</label>
-        <input type="text" class="form-control "placeholder="notelp"  name="notelp">
+        <input type="text" class="form-control "placeholder="notelp"  name="notelp"></input>
     
 </div>
         <div class="col-2"></label>
-            <label> id_spp
-        <input type="text" class="form-control " placeholder="id_spp" name="idspp">
+        <input type="hidden" class="form-control " placeholder="id_spp" value="11" name="idspp"></input>
     
 </div>
 </div><br>

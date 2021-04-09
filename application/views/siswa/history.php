@@ -23,39 +23,25 @@
     <tr>
       <th scope="col" name="idpembayaran">nisn</th>
       <th scope="col" name="idpetugas">nama</th>
-      <th scope="col" name="nisn">id_spp</th>
       <th scope="col" name="tglbayar">tanggal Bayar</th>
       <th scope="col" name="bulanbayar">bulan bayar</th>
       <th scope="col" name="tahunbayar">tahun bayar</th>
-      <th scope="col" name="idspp">id_spp</th>
       <th scope="col" name="jumlahbayar">jumlah bayar</th>
+      <th scope="col" name="idspp">Status</th>
     </tr>
   </thead>
   <?php
-  $pemb = $this->db->get('pembayaran');
-    foreach($pemb->result() as $lapor){
-        if($lapor->jumlah_bayar >= 200000){
-            $status ="lunas";
-        }elseif($lapor->jumlah_bayar < 200000){
-            $status ="belum lunas";
-        }
-        $siswa = $this->db->get_where('siswa', array('nisn' => $this->session->userdata('nisn')));
-        foreach($siswa->result() as $sis){
-            $nisnn = $this->session->userdata('nisn');
-            if($lapor->nisn == $sis->nisn){
-                return $nisnn; 
-            }
+    foreach($pembayaran as $row){
         ?>
       <tr>
-        <td><?php echo $nisnn;?></td>
-        <td><?php echo $sis->nama;?></td>
-        <td><?php echo $lapor->id_spp;?></td>
-        <td><?php echo $lapor->tanggal_bayar;?></td>
-        <td><?php echo $lapor->bulan_bayar;?></td>
-        <td><?php echo $lapor->tahun_bayar;?></td>
-        <td><?php echo $lapor->jumlah_bayar;?></td>
-        <td><?php echo $status?></td>
-  <?php }}?>
+        <td><?php echo $row['nisn']; ?></td>
+        <td><?php echo $row['namasiswa'];?></td>
+        <td><?php echo $row['tanggalbayar'];?></td>
+        <td><?php echo $row['bulanbayar'];?></td>
+        <td><?php echo $row['tahunbayar'];?></td>
+        <td><?php echo $row['jumlahbayar'];?></td>
+        <td><?php echo $row['status'];?></td>
+  <?php }?>
       </tr>
     </tbody>
 </form>

@@ -12,6 +12,18 @@ class model extends CI_Model{
     function input($data,$pembayaran){
 		$this->db->insert($pembayaran,$data);
 	}
+    function getall(){
+        $query = $this->db->get('pembayaran');
+        return $query;
+    }
+      function getnamepetugas($id){
+        $namapetugas = $this->db->get_where('petugas', array('id_petugas' => $id), 1 );
+        return $namapetugas->result();
+      }
+      function getnamesiswa($id){
+        $namasiswa = $this->db->get_where('siswa',['nisn'=> $id], 1 );
+      return $namasiswa->result();
+      }
     //////////////////////////////////////////
     //////////////  Model SISWA //////////////
     //////////////////////////////////////////
@@ -29,6 +41,10 @@ class model extends CI_Model{
     function inputsiswa($data,$siswa){
 		$this->db->insert('siswa',$data);
 	}
+    function getsiswa($id){
+        $query = $this->db->get_where('pembayaran', array('nisn' => $id) );
+        return $query;
+    }
 
 
     ////////////////////////////////////////////

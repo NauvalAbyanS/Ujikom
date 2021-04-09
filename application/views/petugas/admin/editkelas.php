@@ -21,18 +21,16 @@
         <div class="col">
         <br><br> 
   <div class="row">
-    <div class="col">
+    <div class="col-1">
         <label> id kelas </label><br>
         <input type="text" class="form-control" value="<?php echo $kelas->id_kelas; ?>" name="id">
     </select><br>
-    </div><div class="col">
+    </div><div class="col-3">
         <label> nama kelas </label><br>
         <input type="text" class="form-control" value="<?php echo $kelas->nama_kelas; ?>" name="namakelas">
     </select><br>
     </div>
-        </div>
-            <div class="row">
-                <div class="col-6">
+            <div class="col-3">
             <label> kompetensi dan Keahlian  </label>
         <input type="text" class="form-control" value="<?php echo $kelas->kompetensi_keahlian; ?>" name="kompetensi">
         <br>

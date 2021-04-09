@@ -12,40 +12,39 @@
 </head>
 <body>
     <p><?php include 'application/views/include/navbar.php'; ?><p>
-<center><h4>Tambah data Petugas</h1></center><br><br>
+<center><h4>Tambah data Petugas</h4></center><br><br>
 
 <form class="container border" action="<?=base_url('main/addpetugas'); ?>" method="post">
-<div class="row">
-        <div class="col">
+
         <br><br> 
   <div class="row">
+  <div class="col-3">
+        <label> id Petugas</label>
+                    <input type="text" class="form-control" placeholder="id petugas "name="idpetugas" >
+            </div>
+            
     <div class="col">
         <label> level </label><br>
         <select name="level">
-        <option value="1" >1</option>
-        <option value="2" >2</option>
-    </select><br>
-    </div><div class="col-10">
-        <label> id_petugas </label><br>
-        <input type="text" class="form-control" placeholder="id petugas"name="idpetugas">
-    </select><br>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+        </select><br>
+        </div>
     </div>
+        <div class="row">
+            <div class="col-2">
+            <label> nama Petugas</label>
+        <input type="text" class="form-control" placeholder="nama" name="nama">
+    
         </div>
-            <div class="row">
-                <div class="col">
-            <label> email
-        <input type="text" class="form-control" placeholder="email" name="email">
-    </label>
-        </div>
-            <div class="col">
-                <label> password
-                    <input type="text" class="form-control" placeholder="password "name="password" >
-                </label>
+            <div class="col-3">
+                <label> Email Petugas</label>
+                    <input type="text" class="form-control" placeholder="email "name="email" >
             </div>
-        <div class="col-8">
-    <label> nama petugas
-        <input type="text" class="form-control" placeholder="nama petugas"name="namapetugas">
-            </label>
+        <div class="col-3">
+    <label> Password</label>
+        <input type="text" class="form-control" placeholder="password"name="password">
+            
         </div>
     </div>
     

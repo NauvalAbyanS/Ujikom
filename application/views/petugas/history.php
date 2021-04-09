@@ -22,30 +22,29 @@
     <table class="table table-bordered container" >
   <thead class ="table table-dark">
     <tr>
-      <th scope="col" name="idpembayaran">id pembayaran</th>
-      <th scope="col" name="idpetugas">id petugas</th>
-      <th scope="col" name="nisn">nisn siswa</th>
+      <th scope="col" name="idpembayaran">no</th>
+      <th scope="col" name="idpetugas">nama petugas</th>
+      <th scope="col" name="nisn">nama siswa</th>
       <th scope="col" name="tglbayar">tanggal Bayar</th>
       <th scope="col" name="bulanbayar">bulan bayar</th>
       <th scope="col" name="tahunbayar">tahun bayar</th>
-      <th scope="col" name="idspp">id_spp</th>
       <th scope="col" name="jumlahbayar">jumlah bayar</th>
     </tr>
   </thead>
   <?php
-  $query = $this->db->get('pembayaran');
-    foreach($query->result() as $row){
+  $i=0;
+    foreach($pembayaran as $row){
+      $i++;
         ?>
       <tr>
 
-        <td><?php echo $row->id_pembayaran;?></td>
-        <td><?php echo $row->id_petugas;?></td>
-        <td><?php echo $row->nisn;?></td>
-        <td><?php echo $row->tanggal_bayar;?></td>
-        <td><?php echo $row->bulan_bayar;?></td>
-        <td><?php echo $row->tahun_bayar;?></td>
-        <td><?php echo $row->id_spp;?></td>
-        <td><?php echo $row->jumlah_bayar;?></td>
+        <td><?php echo $i;?></td>
+        <td><?php echo $row['namapetugas']; ?></td>
+        <td><?php echo $row['namasiswa'];?></td>
+        <td><?php echo $row['tanggalbayar'];?></td>
+        <td><?php echo $row['bulanbayar'];?></td>
+        <td><?php echo $row['tahunbayar'];?></td>
+        <td><?php echo $row['jumlahbayar'];?></td>
   <?php }?>
       </tr>
     </tbody>

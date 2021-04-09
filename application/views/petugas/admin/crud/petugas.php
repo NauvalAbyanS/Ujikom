@@ -17,7 +17,7 @@
 <?php include 'application/views/include/navbar.php'; ?>
     <center><h1>data petugas</h1></center>
     <br><br>
-    <button type="button" class="btn btn-success add">  <a href="<?php echo site_url('Main/addpetugasform/') ?>" class="addd">Tambah data Petugas</a> </button>
+    <button type="button" class="btn btn-success add">  <a href="<?php echo site_url('Main/addpetugasform/') ?>" class="add2">Tambah data Petugas</a> </button>
     <br><p>
     <form>
     <table class="table table-bordered container" >
@@ -25,7 +25,6 @@
     <tr>
       <th scope="col" name="idpetugas">id petugas</th>
       <th scope="col" name="email">email</th>
-      <th scope="col" name="password">password</th>
       <th scope="col" name="namapetugas">nama_petugas</th>
       <th scope="col" name="level">level(role)</th>
       <th scope="col" >option</th>
@@ -38,7 +37,6 @@
       <tr>
         <td><?php echo $row->id_petugas;?></td>
         <td><?php echo $row->email;?></td>
-        <td><?php echo $row->password;?></td>
         <td><?php echo $row->nama_petugas;?></td>
         <td><?php echo $row->level;?></td>
         <td>
