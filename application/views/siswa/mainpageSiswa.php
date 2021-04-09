@@ -21,7 +21,7 @@
       <h2> ingin melihat history pembayaranmu? </h2>
     </div>
     
-    <form action="<?= base_url('main/historysiswa'); ?>" method="post">
+    <form action="<?php base_url('main/historysiswa'); ?>" method="post">
     <button type="submit" class="button1" value="history" name="button"> History pembayaran</button>
     
 </form>

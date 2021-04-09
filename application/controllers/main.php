@@ -53,7 +53,6 @@ class main extends CI_Controller {
 					'email' => $siswa['email'],
 					'nama' => $siswa['nama'],
 					'nisn' => $siswa['nisn']
-
 				];
 				$this->session->set_userdata($data);
 				$this->load->view('siswa/mainpagesiswa');
@@ -139,7 +138,6 @@ class main extends CI_Controller {
 		
 		
 		$siswa = $this->db->get_where('siswa',['nisn'=> $nisn])->row_array();
-		
 		
 		$data = array(
 			'id_pembayaran' => $idpembayaran,
@@ -232,7 +230,6 @@ class main extends CI_Controller {
 			}elseif($a->jumlah_bayar < 200000){
 				$status ="belum lunas";
 			}
-
 			$namasipe[] = array(
 				'nisn' => $a->nisn,
 				'namasiswa' => $nasi[0]->nama,
@@ -246,7 +243,6 @@ class main extends CI_Controller {
 		// var_dump($namasipe);
 		$this->load->view('siswa/history', $data);
 	}
-
 	/////////////////////////////////////////////////////////////////
 	///////////// 	UPDATE PETUGAS | | DELETE PETUGAS 	/////////////
 	/////////////////////////////////////////////////////////////////
@@ -282,20 +278,6 @@ class main extends CI_Controller {
 		$level = $this->input->post('level');
 		$notelp = $this->input->post('notelp');
 		$idspp = $this->input->post('idspp');
-
-		// $siswa = $this->db->get_where('siswa',['nisn'=> $nisn])->row_array();
-		// $data = array(
-		// 	'nis' => $nis,
-		// 	'email' => $email,
-		// 	'nama' => $nama,
-		// 	'password' => $password,
-		// 	'id_kelas' => $idkelas,
-		// 	'alamat' => $alamat,
-		// 	'notelp' => $notelp,
-		// 	'id_spp' => $idspp
-		// 	);
-		// $this->model->updatesiswa($data,'siswa',$nisn);
-		// $this->load->view('petugas/admin/crud/siswa');
 
 		$petugas = $this->db->get_where('petugas',['id_petugas'=> $idpetugas])->row_array();
 		$data = array(
