@@ -40,7 +40,7 @@
         <td><?php echo $row->nominal;?></td>
         <td>
       <a href="<?php echo site_url('Main/editspp/'.$row->id_spp) ?>">Edit</a> ||
-      <a href="<?php echo site_url('Main/deletespp/'.$row->id_spp) ?>">Delete</a>
+      <a href="<?php echo site_url('Main/deletespp/'.$row->id_spp) ?>" onclick="javascript: return confirm('Apakah Anda yakin ingin menghapus data ini?')" >Delete</a>
   <?php }?>
       </tr>
     </tbody>

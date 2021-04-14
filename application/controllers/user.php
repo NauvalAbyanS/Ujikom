@@ -13,6 +13,9 @@ class user extends CI_Controller {
     public function indexpetugas(){
         $this->load->view('petugas/mainpagepetugas');
     }
+    public function siswa(){
+        redirect('main/historysiswa');
+    }
     public function indexsiswa(){
         $data['siswa'] = $this->db->get_where('siswa',['email' => $this->session->userdata('email')])->row_array();
         echo 'selamat datang '. $data['siswa']['nama_siswa']  . '!!';

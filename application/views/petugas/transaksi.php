@@ -3,11 +3,11 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/navbar.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/transaksi.css">
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Transaksi pembayaran</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
         </div>
         <br><br> 
   <div class="row">
-    <div class="col">
+    <div class="col-2">
         <label> NISN Siswa </label><br>
     <select name="nisn" >
         <option value="000123">Evaldo Mahabrata</option>
@@ -33,15 +33,16 @@
         <option value="004485">Jeremy Putra</option>
         <option value="004862">Alifikri Muenpa</option>
         <option value="005489">Rendi Triwahyudi</option>
-    </select>
-    <div class="col-1">
+    </select></div>
+    <div class="col-10">
     <label> id_spp </label><br>
     <select name="idspp">
             <option value="11">11</option>
             <option value="12">12</option>
     </select><br>
     </div>
-        </div></div>
+        </div><br>
+        </div>
             <div class="row">
                 <div class="col">
             <label> Tanggal

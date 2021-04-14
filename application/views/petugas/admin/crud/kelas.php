@@ -41,7 +41,7 @@
 
         <td>
         <a href="<?php echo site_url('Main/editkelas/'.$row->id_kelas) ?>">Edit</a> ||
-        <a href="<?php echo site_url('Main/deletekelas/'.$row->id_kelas) ?>">Delete</a>
+        <a href="<?php echo site_url('Main/deletekelas/'.$row->id_kelas) ?>" onclick="javascript: return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
   <?php }?>
       </tr>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/navbar.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/buttonpc.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/buttonlaptop.css">
 
   <style>
   </style>
@@ -21,8 +21,8 @@
       <h2> ingin melihat history pembayaranmu? </h2>
     </div>
     
-    <form action="<?php base_url('main/historysiswa'); ?>" method="post">
-    <button type="submit" class="button1" value="history" name="button"> History pembayaran</button>
+    <form  >
+    <button type="submit" class="button1" action="<?php base_url('main/historysiswa'); ?>"> History pembayaran</button>
     
 </form>
 </div>

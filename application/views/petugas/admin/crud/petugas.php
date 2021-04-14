@@ -41,7 +41,7 @@
         <td><?php echo $row->level;?></td>
         <td>
       <a href="<?php echo site_url('Main/editpetugas/'.$row->id_petugas) ?>">Edit</a> ||
-      <a href="<?php echo site_url('Main/deletepetugas/'.$row->id_petugas) ?>">Delete</a>
+      <a href="<?php echo site_url('Main/deletepetugas/'.$row->id_petugas) ?>" onclick="javascript: return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
   <?php }?>
       </tr>
       

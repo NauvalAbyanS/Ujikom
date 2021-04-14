@@ -55,13 +55,13 @@ class main extends CI_Controller {
 					'nisn' => $siswa['nisn']
 				];
 				$this->session->set_userdata($data);
-				$this->load->view('siswa/mainpagesiswa');
+				redirect('user/siswa');
 				}
 			}else{
 				echo "data tidak ditemukan";
 			}
 		}
-	
+		
 		public function link(){
 			$button = $_POST['button'];
     	if ($button == 'transaksi'){
@@ -106,7 +106,6 @@ class main extends CI_Controller {
 			$nasi = $this->model->getnamesiswa($a->nisn);
 			
 			$namasipe[] = array(
-				'id_pembayaran' => $a->id_pembayaran,
 				'namapetugas' => $nape[0]->nama_petugas,
 				'namasiswa' => $nasi[0]->nama,
 				'tanggalbayar'=> $a->tanggal_bayar,
@@ -218,6 +217,12 @@ class main extends CI_Controller {
 	function deletesiswa($nisn){
 		$this->model->deletesiswa($nisn);
 		$this->load->view('petugas/admin/crud/siswa');
+	}
+	function histsis(){
+		$button = $_POST['button'];
+		if($button == 'history'){
+			redirect('main/historyiswa');
+	 	}
 	}
 	function historysiswa(){
 		$pembayaran = $this->model->getsiswa($this->session->userdata('nisn'));

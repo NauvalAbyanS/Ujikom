@@ -47,7 +47,7 @@
         <td><?php echo $row->notelp;?></td>
         <td>
       <a href="<?php echo site_url('Main/editsiswa/'.$row->nisn) ?>">Edit</a> ||
-      <a href="<?php echo site_url('Main/deletesiswa/'.$row->nisn) ?>">Delete</a>
+      <a href="<?php echo site_url('Main/deletesiswa/'.$row->nisn) ?>" onclick="javascript: return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
   <?php }?>
       </tr>
     </tbody>

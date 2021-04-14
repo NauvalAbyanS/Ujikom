@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/navbar.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/buttonpc.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/buttonlaptop.css">
 
   <style>
   </style>
